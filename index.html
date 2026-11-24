@@ -27,24 +27,12 @@
     }
     *{box-sizing:border-box;margin:0;padding:0;font-family:'Inter',sans-serif}
     html{scroll-behavior:smooth}
-    body{
-      background:#eef2f7;color:var(--text-main);line-height:1.6;
-      display:flex;min-height:100vh;overflow-x:hidden;-webkit-font-smoothing:antialiased;
-    }
-    button,a,.nav-item,.dashboard-box,.user-area,input,select,textarea,.notif-item,.admin-tab{
-      touch-action:manipulation;-webkit-tap-highlight-color:transparent;transition:all var(--transition);
-    }
+    body{background:#eef2f7;color:var(--text-main);line-height:1.6;display:flex;min-height:100vh;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+    button,a,.nav-item,.dashboard-box,.user-area,input,select,textarea,.notif-item,.admin-tab{touch-action:manipulation;-webkit-tap-highlight-color:transparent;transition:all var(--transition)}
     .clickable-title{cursor:pointer;user-select:none}
     .clickable-title:hover{color:var(--primary)}
 
-    .sidebar{
-      width:var(--sidebar-width);background:rgba(255,255,255,.96);
-      backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
-      display:flex;flex-direction:column;position:fixed;top:0;left:0;bottom:0;
-      z-index:100;overflow-y:auto;border-right:1px solid var(--border);
-      box-shadow:2px 0 24px -8px rgba(15,23,42,.06);
-      transition:transform .35s cubic-bezier(.4,0,.2,1);
-    }
+    .sidebar{width:var(--sidebar-width);background:rgba(255,255,255,.96);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);display:flex;flex-direction:column;position:fixed;top:0;left:0;bottom:0;z-index:100;overflow-y:auto;border-right:1px solid var(--border);box-shadow:2px 0 24px -8px rgba(15,23,42,.06);transition:transform .35s cubic-bezier(.4,0,.2,1)}
     .sidebar::-webkit-scrollbar{width:6px}
     .sidebar::-webkit-scrollbar-thumb{background:var(--border);border-radius:10px}
     .sidebar .brand{display:flex;align-items:center;justify-content:center;padding:22px 16px;border-bottom:1px solid var(--border);position:relative}
@@ -71,9 +59,8 @@
     .notif-dropdown{position:absolute;top:calc(100% + 10px);right:0;background:#fff;border:1px solid var(--border);border-radius:18px;box-shadow:var(--shadow-xl);width:340px;max-height:420px;overflow-y:auto;z-index:1000;display:none}
     .notif-dropdown.active{display:block}
     .notif-header{padding:16px 18px;border-bottom:1px solid var(--border);font-weight:700;font-size:.92rem;display:flex;justify-content:space-between}
-    .notif-clear{font-size:.72rem;color:var(--primary);cursor:pointer;font-weight:700}
     .notif-list{list-style:none}
-    .notif-item{padding:14px 18px;border-bottom:1px solid var(--border);font-size:.85rem;display:flex;gap:12px;cursor:pointer}
+    .notif-item{padding:14px 18px;border-bottom:1px solid var(--border);font-size:.85rem;display:flex;gap:12px}
     .notif-item:hover{background:rgba(241,245,249,.5)}
     .notif-empty{padding:28px 18px;text-align:center;color:var(--text-muted);font-size:.85rem}
 
@@ -182,46 +169,12 @@
 <body>
 <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
 
+<!-- ============ SIDEBAR — rendered dynamically from Supabase ============ -->
 <aside class="sidebar" id="mainSidebar">
   <div class="brand clickable-title" onclick="showSection('home')">
     <img src="https://msgsmxmdrmigjyrrccfg.supabase.co/storage/v1/object/public/logo/WhatsApp%20Image%202026-11-08%20at%204.39.42%20PM.jpeg" alt="FBDA Logo">
   </div>
-
-  <div class="nav-group hidden" id="mainNavGroup">
-    <div class="nav-label">Main Menu</div>
-    <a class="nav-item active" data-section="home"><span class="icon">🏠</span><span>Dashboard</span></a>
-    <a class="nav-item" data-section="donor-reg"><span class="icon">🩸</span><span>Donor Registration</span></a>
-    <a class="nav-item" data-section="search-donor"><span class="icon">🔍</span><span>Search Donor</span></a>
-    <a class="nav-item" data-section="blood-request"><span class="icon">📋</span><span>Blood Request</span></a>
-    <a class="nav-item" data-section="ambulance-service"><span class="icon">🚑</span><span>Ambulance Service</span></a>
-    <a class="nav-item" data-section="doctor-info"><span class="icon">🩺</span><span>Doctor Info</span></a>
-    <a class="nav-item" data-section="campaign-request"><span class="icon">📢</span><span>Campaign Request</span></a>
-    <a class="nav-item" data-section="join-family"><span class="icon">👨‍👩‍👧‍👦</span><span>Join FBDA Family</span></a>
-    <a class="nav-item" data-section="volunteer"><span class="icon">🤝</span><span>Be a Volunteer</span></a>
-    <a class="nav-item" data-section="archive"><span class="icon">📚</span><span>Archive</span></a>
-    <a class="nav-item hidden" id="myRequestsNavItem" data-section="my-requests"><span class="icon">📄</span><span>My Requests</span></a>
-  </div>
-
-  <div class="nav-group" id="infoNavGroup">
-    <div class="nav-label">Information</div>
-    <a class="nav-item" data-section="notice-board"><span class="icon">📌</span><span>Notice Board</span></a>
-    <a class="nav-item" data-section="testimonial"><span class="icon">💬</span><span>Testimonial</span></a>
-    <a class="nav-item" data-section="about"><span class="icon">ℹ️</span><span>About Us</span></a>
-    <a class="nav-item" data-section="contact"><span class="icon">📞</span><span>Contact Us</span></a>
-    <a class="nav-item" data-section="send-donation"><span class="icon">💳</span><span>Send Donation</span></a>
-  </div>
-
-  <div class="nav-group hidden" id="adminNavGroup">
-    <div class="nav-label">Admin Panel</div>
-    <a class="nav-item" data-section="admin-dashboard"><span class="icon">🛡️</span><span>Admin Dashboard</span></a>
-  </div>
-
-  <div class="nav-group">
-    <div class="nav-label">Account</div>
-    <a class="nav-item hidden" id="accountNavItem" data-section="account-settings"><span class="icon">⚙️</span><span>My Account</span></a>
-    <a class="nav-item" id="loginNavItem" data-section="auth-section"><span class="icon">🔐</span><span>Login / Register</span></a>
-  </div>
-
+  <div id="dynamicSidebarNav"><!-- filled by loadSidebar() --></div>
   <div class="user-footer"><span id="sidebarUserStatus">Not logged in</span></div>
 </aside>
 
@@ -232,7 +185,7 @@
       <div class="page-title clickable-title" id="pageTitle" onclick="showSection('home')">FBDA</div>
     </div>
     <div class="header-right">
-      <div class="notif-wrapper hidden" id="notifWrapper" onclick="toggleNotifications(event)">
+      <div class="notif-wrapper hidden" id="notifWrapper" data-requires="user" onclick="toggleNotifications(event)">
         <svg class="notif-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
         <span class="notif-badge" id="notifBadge">0</span>
         <div class="notif-dropdown" id="notifDropdown">
@@ -240,7 +193,7 @@
           <ul class="notif-list" id="notifList"><li class="notif-empty">No notifications</li></ul>
         </div>
       </div>
-      <div class="user-area hidden" id="userArea" onclick="toggleDropdown(event)">
+      <div class="user-area hidden" id="userArea" data-requires="user" onclick="toggleDropdown(event)">
         <span class="name" id="headerUserName"></span>
         <div class="avatar" id="headerAvatar">?</div>
         <div class="dropdown-menu hidden" id="userDropdown">
@@ -255,22 +208,19 @@
   <div class="content-area">
     <div id="alertBox" class="alert"></div>
 
-    <!-- ============ HOME ============ -->
     <section id="home" class="page-section active">
       <div class="stat-card text-center" style="margin-bottom:20px;padding:24px 16px;background:linear-gradient(135deg,#fff,#f8fafc);box-shadow:none">
         <h2 style="font-size:1.6rem;margin-bottom:8px;font-weight:800">Welcome to Feni Blood Donate Association</h2>
         <p style="color:var(--text-muted)">Your Community Blood Donation Network.</p>
       </div>
-
-      <div id="homeBannersBlock" class="home-banner-grid hidden">
+      <div id="homeBannersBlock" class="home-banner-grid hidden" data-requires="user">
         <div class="home-banner-card"><div class="b-icon">🎯</div><h4>Our Mission</h4><p>Connecting blood donors with patients in need, saving lives every day.</p></div>
         <div class="home-banner-card"><div class="b-icon">🩸</div><h4>Blood Donation Drive</h4><p>Join our upcoming donation camp — every drop counts!</p></div>
         <div class="home-banner-card"><div class="b-icon">🏆</div><h4>Top Donors</h4><p>Celebrating our heroes who donated 10+ times this year.</p></div>
         <div class="home-banner-card"><div class="b-icon">📢</div><h4>Announcements</h4><p>New Digital ID Card applications are now open!</p></div>
       </div>
-
-      <div id="loggedInHomeMenu" class="dashboard-grid hidden">
-        <a class="dashboard-box hidden" id="adminHomeMenuBox" onclick="showSection('admin-dashboard')"><div class="dash-icon" style="background:#fee2e2;color:#dc2626">🛡️</div><div><h4>Admin Dashboard</h4><p>Manage users and content.</p></div></a>
+      <div id="loggedInHomeMenu" class="dashboard-grid hidden" data-requires="user">
+        <a class="dashboard-box" data-requires="admin" onclick="showSection('admin-dashboard')"><div class="dash-icon" style="background:#fee2e2;color:#dc2626">🛡️</div><div><h4>Admin Dashboard</h4><p>Manage users and content.</p></div></a>
         <a class="dashboard-box" onclick="showSection('donor-reg')"><div class="dash-icon" style="background:#fef2f2">🩸</div><div><h4>Donor Registration</h4><p>Register as a donor.</p></div></a>
         <a class="dashboard-box" onclick="showSection('search-donor')"><div class="dash-icon" style="background:#eff6ff">🔍</div><div><h4>Search Donor</h4><p>Find matching donors.</p></div></a>
         <a class="dashboard-box" onclick="showSection('blood-request')"><div class="dash-icon" style="background:#f0fdf4">📋</div><div><h4>Blood Request</h4><p>Request blood urgently.</p></div></a>
@@ -278,63 +228,37 @@
         <a class="dashboard-box" onclick="showSection('doctor-info')"><div class="dash-icon" style="background:#faf5ff">🩺</div><div><h4>Doctor Info</h4><p>Medical professionals.</p></div></a>
         <a class="dashboard-box" onclick="showSection('my-requests')"><div class="dash-icon" style="background:#f8fafc">📄</div><div><h4>My Requests</h4><p>View your requests.</p></div></a>
       </div>
-
-      <div id="publicHomeContent">
+      <div id="publicHomeContent" data-requires="guest">
         <div class="dashboard-grid">
           <div class="stat-card"><h4>Donate Blood</h4><p>Every drop counts.</p></div>
           <div class="stat-card"><h4>Find a Donor</h4><p>Search our verified database.</p></div>
           <div class="stat-card"><h4>Medical Camps</h4><p>Join blood donation campaigns.</p></div>
         </div>
-        <div class="mt-3 text-center">
-          <button onclick="showSection('auth-section')" style="padding:16px 32px;font-size:1.05rem">Login to Access Features</button>
-        </div>
+        <div class="mt-3 text-center"><button onclick="showSection('auth-section')" style="padding:16px 32px;font-size:1.05rem">Login to Access Features</button></div>
       </div>
     </section>
 
-    <!-- ============ AUTH — PHONE LOGIN ============ -->
     <section id="auth-section" class="page-section">
       <div class="form-card" style="max-width:480px;margin:0 auto">
         <div class="admin-tabs" style="border:none;margin-bottom:20px">
           <button id="tabLoginBtn" class="admin-tab active" style="flex:1">Login</button>
           <button id="tabRegisterBtn" class="admin-tab" style="flex:1">Register</button>
         </div>
-
-        <!-- LOGIN: phone or email + password -->
         <form id="loginForm">
           <div class="form-group">
             <label>Phone Number</label>
             <input id="loginIdentifier" type="text" placeholder="017XXXXXXXX or email" autocomplete="username" required />
-            <span class="hint">You can enter your phone number or your registered email.</span>
+            <span class="hint">Enter your phone number or registered email.</span>
           </div>
-          <div class="form-group">
-            <label>Password</label>
-            <input id="loginPassword" type="password" autocomplete="current-password" required />
-          </div>
+          <div class="form-group"><label>Password</label><input id="loginPassword" type="password" autocomplete="current-password" required /></div>
           <button type="submit" style="width:100%">Login</button>
         </form>
-
-        <!-- REGISTER: name, phone, password, blood group, optional email -->
         <form id="registerForm" class="hidden">
-          <div class="form-group">
-            <label>Full Name</label>
-            <input id="regName" required />
-          </div>
-          <div class="form-group">
-            <label>Phone Number</label>
-            <input id="regPhone" type="tel" placeholder="017XXXXXXXX" autocomplete="tel" required />
-            <span class="hint">This phone number will be your login ID.</span>
-          </div>
-          <div class="form-group">
-            <label>Email (optional)</label>
-            <input id="regEmail" type="email" placeholder="you@example.com" autocomplete="email" />
-            <span class="hint">Used only for contact — not for login.</span>
-          </div>
-          <div class="form-group">
-            <label>Password (min 6 chars)</label>
-            <input id="regPassword" type="password" minlength="6" autocomplete="new-password" required />
-          </div>
-          <div class="form-group">
-            <label>Blood Group</label>
+          <div class="form-group"><label>Full Name</label><input id="regName" required /></div>
+          <div class="form-group"><label>Phone Number</label><input id="regPhone" type="tel" placeholder="017XXXXXXXX" autocomplete="tel" required /><span class="hint">This phone number will be your login ID.</span></div>
+          <div class="form-group"><label>Email (optional)</label><input id="regEmail" type="email" placeholder="you@example.com" autocomplete="email" /><span class="hint">Used only for contact — not for login.</span></div>
+          <div class="form-group"><label>Password (min 6 chars)</label><input id="regPassword" type="password" minlength="6" autocomplete="new-password" required /></div>
+          <div class="form-group"><label>Blood Group</label>
             <select id="regBloodGroup">
               <option value="">Select</option>
               <option>A+</option><option>A-</option><option>B+</option><option>B-</option>
@@ -343,14 +267,9 @@
           </div>
           <button type="submit" style="width:100%">Create Account</button>
         </form>
-
-        <!-- WhatsApp password reset -->
         <div style="margin-top:20px;padding:16px;background:#f8fafc;border-radius:12px;border:1px solid var(--border)">
-          <p style="font-size:.85rem;color:var(--text-muted);margin-bottom:10px">
-            <strong>Forgot your password?</strong> Contact the admin on WhatsApp to request a reset.
-          </p>
-          <a id="whatsappResetBtn" target="_blank" rel="noopener"
-             style="display:inline-flex;align-items:center;gap:8px;text-decoration:none;color:#fff;background:#25D366;padding:10px 16px;border-radius:12px;font-weight:700;font-size:.88rem">
+          <p style="font-size:.85rem;color:var(--text-muted);margin-bottom:10px"><strong>Forgot your password?</strong> Contact the admin on WhatsApp to request a reset.</p>
+          <a id="whatsappResetBtn" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;text-decoration:none;color:#fff;background:#25D366;padding:10px 16px;border-radius:12px;font-weight:700;font-size:.88rem">
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M20.5 3.5A11.9 11.9 0 0 0 12 0C5.4 0 0 5.4 0 12c0 2.1.6 4.1 1.6 5.9L0 24l6.3-1.6a12 12 0 0 0 5.7 1.5C18.6 23.9 24 18.5 24 12c0-3.2-1.3-6.2-3.5-8.5z"/></svg>
             Request Password Reset on WhatsApp
           </a>
@@ -358,10 +277,8 @@
       </div>
     </section>
 
-    <!-- ============ MY REQUESTS ============ -->
     <section id="my-requests" class="page-section">
       <h2 style="margin-bottom:24px;font-weight:800">My Requests</h2>
-
       <div class="form-card" style="max-width:100%">
         <h3 style="margin-bottom:16px;font-weight:700">Submit a New Blood Request</h3>
         <form id="newBloodRequestForm">
@@ -369,8 +286,7 @@
             <div class="form-group"><label>Patient Name</label><input id="reqPatient" required /></div>
             <div class="form-group"><label>Blood Group</label>
               <select id="reqBloodGroup" required>
-                <option value="">Select</option>
-                <option>A+</option><option>A-</option><option>B+</option><option>B-</option>
+                <option value="">Select</option><option>A+</option><option>A-</option><option>B+</option><option>B-</option>
                 <option>AB+</option><option>AB-</option><option>O+</option><option>O-</option>
               </select>
             </div>
@@ -381,28 +297,20 @@
           <button type="submit">Submit Request</button>
         </form>
       </div>
-
       <h3 style="margin:24px 0 12px;font-weight:700">Request History</h3>
-      <div id="myRequestsList" style="display:flex;flex-direction:column;gap:8px">
-        <p style="color:var(--text-muted)">Loading…</p>
-      </div>
+      <div id="myRequestsList" style="display:flex;flex-direction:column;gap:8px"><p style="color:var(--text-muted)">Loading…</p></div>
     </section>
 
-    <!-- ============ ACCOUNT / PROFILE ============ -->
     <section id="account-settings" class="page-section">
       <h2 style="margin-bottom:24px;font-weight:800">My Account</h2>
-
       <div class="form-card" style="max-width:100%">
         <div style="display:flex;align-items:center;gap:20px;margin-bottom:24px">
-          <img id="profileAvatarImg" class="profile-avatar"
-               src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96'%3E%3Crect width='96' height='96' fill='%23e5e7eb'/%3E%3C/svg%3E"
-               alt="Avatar">
+          <img id="profileAvatarImg" class="profile-avatar" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96'%3E%3Crect width='96' height='96' fill='%23e5e7eb'/%3E%3C/svg%3E" alt="Avatar">
           <div>
             <p id="profileHeaderName" style="font-weight:800;font-size:1.15rem">—</p>
             <p id="profileHeaderEmail" style="font-size:.85rem;color:var(--text-muted)">—</p>
           </div>
         </div>
-
         <h3 style="margin-bottom:16px;font-weight:700">Personal Information</h3>
         <div class="revamp-form-grid">
           <div class="form-group"><label>Name</label><input id="profName" /></div>
@@ -414,13 +322,11 @@
           <div class="form-group"><label>Facebook ID (numeric or full URL)</label><input id="profFbId" placeholder="e.g. 100012345678901" /></div>
         </div>
         <button id="saveProfileBtn">Save Profile</button>
-
         <div id="fbBanner" class="hidden" style="margin-top:24px">
           <h4 style="margin-bottom:8px;font-weight:700">Facebook Profile Banner</h4>
           <img id="fbBannerImg" style="width:100%;max-height:220px;object-fit:cover;border-radius:12px" src="" alt="Facebook banner">
         </div>
       </div>
-
       <div class="form-card" style="max-width:100%">
         <h3 style="margin-bottom:12px;font-weight:700">Blood Donation Journal</h3>
         <div class="table-wrapper">
@@ -430,12 +336,9 @@
           </table>
         </div>
       </div>
-
       <div class="form-card" style="max-width:100%">
         <h3 style="margin-bottom:8px;font-weight:700">Certificates & Digital ID</h3>
-        <p style="font-size:.88rem;color:var(--text-muted);margin-bottom:16px">
-          Apply for your FBDA Digital ID Card or Certificate. Once approved, it will appear below.
-        </p>
+        <p style="font-size:.88rem;color:var(--text-muted);margin-bottom:16px">Apply for your FBDA Digital ID Card or Certificate. Once approved, it will appear below.</p>
         <div style="display:flex;gap:8px;flex-wrap:wrap">
           <button id="applyDigitalIdBtn" class="secondary btn-sm">Apply for FBDA Digital ID Card</button>
           <button id="applyCertificateBtn" class="secondary btn-sm">Apply for Certificate</button>
@@ -447,16 +350,13 @@
       </div>
     </section>
 
-    <!-- ============ ADMIN DASHBOARD ============ -->
     <section id="admin-dashboard" class="page-section">
       <h2 style="margin-bottom:24px;font-weight:800">Admin Dashboard</h2>
-
       <div class="admin-tabs">
         <button class="admin-tab active" data-admin="idcert">ID / Certificate Requests</button>
         <button class="admin-tab" data-admin="blood">Blood Requests</button>
         <button class="admin-tab" data-admin="users">Users & Password Reset</button>
       </div>
-
       <div class="admin-tab-content active" id="adminTab-idcert">
         <div class="table-wrapper">
           <table>
@@ -465,11 +365,7 @@
           </table>
         </div>
       </div>
-
-      <div class="admin-tab-content" id="adminTab-blood">
-        <div id="adminBloodList" style="display:flex;flex-direction:column;gap:8px">Loading…</div>
-      </div>
-
+      <div class="admin-tab-content" id="adminTab-blood"><div id="adminBloodList" style="display:flex;flex-direction:column;gap:8px">Loading…</div></div>
       <div class="admin-tab-content" id="adminTab-users">
         <div class="form-card" style="max-width:100%">
           <h3 style="margin-bottom:12px;font-weight:700">Reset User Password</h3>
@@ -478,9 +374,7 @@
             <div class="form-group"><label>New Password</label><input id="adminNewPassword" /></div>
           </div>
           <button id="adminResetBtn" class="danger btn-sm">Reset Password</button>
-          <p style="font-size:.75rem;color:var(--text-muted);margin-top:8px">
-            Requires the <code>admin-reset-password</code> Edge Function deployed on Supabase.
-          </p>
+          <p style="font-size:.75rem;color:var(--text-muted);margin-top:8px">Requires the <code>admin-reset-password</code> Edge Function deployed on Supabase.</p>
         </div>
       </div>
     </section>
@@ -490,7 +384,7 @@
       <h2 style="margin-bottom:16px;font-weight:800">Search Donor</h2>
       <div class="form-card" style="max-width:100%">
         <div style="display:flex;gap:8px;margin-bottom:16px">
-          <input id="searchDonorInput" placeholder="Name, blood group, or address" />
+          <input id="searchDonorInput" placeholder="Name, blood group, address, or phone" />
           <button id="searchDonorBtn">Search</button>
         </div>
         <div id="donorResults" style="display:flex;flex-direction:column;gap:8px"></div>
@@ -521,6 +415,42 @@ const SUPABASE_URL = 'https://msgsmxmdrmigjyrrccfg.supabase.co';
 const SUPABASE_ANON_KEY = 'sb_publishable_h2n9_j7CppeVW4-y_yNl3Q_w9_hjla6';
 const WHATSAPP_ADMIN = '8801839015302';
 
+/* ------------------------------------------------------------------
+   SIDEBAR TABLE — set this to the name of your existing sidebar
+   table in Supabase. Common names to try:
+   'menu_items', 'menus', 'sidebar_menu', 'sidebar_items', 'nav_items',
+   'navigation', 'site_menu', 'sidebar_config'
+   ------------------------------------------------------------------ */
+const SIDEBAR_TABLE = 'menu_items';
+
+/* =====================================================================
+   FALLBACK SIDEBAR — used if the table is empty or fails to load
+   ===================================================================== */
+const FALLBACK_SIDEBAR = [
+  { group:'Main Menu',   label:'Dashboard',           icon:'🏠', section:'home',              role:'all',   order:1  },
+  { group:'Main Menu',   label:'Donor Registration',  icon:'🩸', section:'donor-reg',         role:'user',  order:2  },
+  { group:'Main Menu',   label:'Search Donor',        icon:'🔍', section:'search-donor',      role:'user',  order:3  },
+  { group:'Main Menu',   label:'Blood Request',       icon:'📋', section:'blood-request',     role:'user',  order:4  },
+  { group:'Main Menu',   label:'Ambulance Service',   icon:'🚑', section:'ambulance-service', role:'user',  order:5  },
+  { group:'Main Menu',   label:'Doctor Info',         icon:'🩺', section:'doctor-info',       role:'user',  order:6  },
+  { group:'Main Menu',   label:'Campaign Request',    icon:'📢', section:'campaign-request',  role:'user',  order:7  },
+  { group:'Main Menu',   label:'Join FBDA Family',    icon:'👨‍👩‍👧‍👦', section:'join-family',    role:'user',  order:8  },
+  { group:'Main Menu',   label:'Be a Volunteer',      icon:'🤝', section:'volunteer',         role:'user',  order:9  },
+  { group:'Main Menu',   label:'Archive',             icon:'📚', section:'archive',           role:'user',  order:10 },
+  { group:'Main Menu',   label:'My Requests',         icon:'📄', section:'my-requests',       role:'user',  order:11 },
+  { group:'Information', label:'Notice Board',        icon:'📌', section:'notice-board',      role:'all',   order:20 },
+  { group:'Information', label:'Testimonial',         icon:'💬', section:'testimonial',       role:'all',   order:21 },
+  { group:'Information', label:'About Us',            icon:'ℹ️', section:'about',             role:'all',   order:22 },
+  { group:'Information', label:'Contact Us',          icon:'📞', section:'contact',           role:'all',   order:23 },
+  { group:'Information', label:'Send Donation',       icon:'💳', section:'send-donation',     role:'all',   order:24 },
+  { group:'Admin Panel', label:'Admin Dashboard',     icon:'🛡️', section:'admin-dashboard',   role:'admin', order:30 },
+  { group:'Account',     label:'My Account',          icon:'⚙️', section:'account-settings',  role:'user',  order:40 },
+  { group:'Account',     label:'Login / Register',    icon:'🔐', section:'auth-section',      role:'guest', order:41 }
+];
+
+/* =====================================================================
+   INIT
+   ===================================================================== */
 const { createClient } = supabase;
 const sb = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
@@ -532,6 +462,8 @@ document.getElementById('whatsappResetBtn').href =
    ===================================================================== */
 let currentUser = null;
 let isAdmin = false;
+let sidebarItems = FALLBACK_SIDEBAR;
+let sidebarSource = 'fallback';
 
 /* =====================================================================
    UTILS
@@ -544,48 +476,150 @@ function alertBox(msg, type = 'success') {
   box.textContent = msg;
   setTimeout(() => { box.className = 'alert'; }, 4000);
 }
-
 function toggleSidebar() {
   $('mainSidebar').classList.toggle('open');
   $('sidebarOverlay').classList.toggle('active');
 }
-function toggleDropdown(e) {
-  e.stopPropagation();
-  $('userDropdown').classList.toggle('hidden');
-}
+function toggleDropdown(e) { e.stopPropagation(); $('userDropdown').classList.toggle('hidden'); }
 document.addEventListener('click', () => $('userDropdown').classList.add('hidden'));
-function toggleNotifications(e) {
-  e.stopPropagation();
-  $('notifDropdown').classList.toggle('active');
-}
+function toggleNotifications(e) { e.stopPropagation(); $('notifDropdown').classList.toggle('active'); }
 
-/* =====================================================================
-   PHONE ⇄ EMAIL HELPERS
-   ===================================================================== */
-// Strip everything except digits and a leading +
 function cleanPhone(input) {
   if (!input) return '';
-  let s = String(input).trim().replace(/[\s\-()]/g, '');
-  return s;
+  return String(input).trim().replace(/[\s\-()]/g, '');
 }
-
-// Convert a phone number to the synthetic email used by Supabase auth
 function phoneToEmail(phone) {
   const cleaned = cleanPhone(phone).replace(/^\+/, '');
   return `${cleaned}@fbda.local`;
 }
-
-// True if input looks like a phone (digits, optional +, spaces, dashes)
 function looksLikePhone(input) {
   return /^[\+]?[\d\s\-()]{7,}$/.test(String(input).trim());
 }
-
-// Extract a human-readable login name (phone if synthetic, else email)
 function displayLogin(user) {
   if (!user) return '';
   const email = user.email || '';
   const m = email.match(/^(.+)@fbda\.local$/);
   return m ? m[1] : email;
+}
+
+/* =====================================================================
+   SIDEBAR — LOAD FROM SUPABASE + RENDER
+   ===================================================================== */
+async function loadSidebar() {
+  try {
+    const { data, error } = await sb.from(SIDEBAR_TABLE).select('*');
+    if (error) {
+      console.warn(`[sidebar] Could not load from "${SIDEBAR_TABLE}": ${error.message}`);
+      sidebarItems = FALLBACK_SIDEBAR;
+      sidebarSource = 'fallback (db error)';
+      renderSidebar();
+      return;
+    }
+    if (!data || !data.length) {
+      console.warn(`[sidebar] Table "${SIDEBAR_TABLE}" is empty — using fallback.`);
+      sidebarItems = FALLBACK_SIDEBAR;
+      sidebarSource = 'fallback (empty)';
+      renderSidebar();
+      return;
+    }
+    console.log(`[sidebar] Loaded ${data.length} rows from "${SIDEBAR_TABLE}". Keys:`, Object.keys(data[0]));
+    sidebarItems = data.map(mapSidebarRow).filter(r => r.label && r.section);
+    sidebarSource = 'database';
+    renderSidebar();
+  } catch (e) {
+    console.warn('[sidebar] Exception:', e);
+    sidebarItems = FALLBACK_SIDEBAR;
+    sidebarSource = 'fallback (exception)';
+    renderSidebar();
+  }
+}
+
+/* Flexible column mapper — tries common column names in order */
+function mapSidebarRow(row) {
+  const keys = Object.keys(row);
+  const pick = (...candidates) => {
+    for (const c of candidates) {
+      if (keys.includes(c) && row[c] !== null && row[c] !== undefined) return row[c];
+    }
+    return null;
+  };
+  return {
+    label:   pick('label', 'title', 'name', 'menu_label', 'item_label', 'text'),
+    icon:    pick('icon', 'emoji', 'icon_class', 'icon_text') || '•',
+    section: pick('section', 'target', 'route', 'href', 'url', 'section_id', 'slug'),
+    group:   pick('group', 'group_name', 'category', 'menu_group', 'parent_group', 'section_group') || 'Main Menu',
+    order:   Number(pick('sort_order', 'order_index', 'display_order', 'position', 'order') || 0),
+    role:    pick('role', 'role_required', 'visible_for', 'visibility', 'access', 'access_level') || 'all',
+    active:  pick('is_active', 'active', 'enabled') !== false
+  };
+}
+
+/* Render the sidebar nav into #dynamicSidebarNav */
+function renderSidebar() {
+  const container = $('dynamicSidebarNav');
+  if (!container) return;
+
+  const state = isAdmin ? 'admin' : (currentUser ? 'user' : 'guest');
+
+  // Filter by role + active
+  const visible = sidebarItems.filter(it => {
+    if (it.active === false) return false;
+    const r = (it.role || 'all').toLowerCase();
+    if (r === 'all' || r === state) return true;
+    // admin sees user items too
+    if (state === 'admin' && r === 'user') return true;
+    return false;
+  });
+
+  if (!visible.length) {
+    container.innerHTML = '';
+    return;
+  }
+
+  // Group by group name, preserving order
+  const groups = new Map();
+  visible
+    .sort((a, b) => a.order - b.order)
+    .forEach(it => {
+      const g = it.group || 'Main Menu';
+      if (!groups.has(g)) groups.set(g, []);
+      groups.get(g).push(it);
+    });
+
+  // Render
+  const html = [];
+  for (const [gName, items] of groups) {
+    html.push(`<div class="nav-group">`);
+    html.push(`  <div class="nav-label">${escapeHtml(gName)}</div>`);
+    items.forEach(it => {
+      const active = (it.section === 'home' && state !== 'guest') || false;
+      html.push(`
+        <a class="nav-item${active ? ' active' : ''}" data-section="${escapeHtml(it.section)}">
+          <span class="icon">${escapeHtml(it.icon)}</span><span>${escapeHtml(it.label)}</span>
+        </a>
+      `);
+    });
+    html.push(`</div>`);
+  }
+  container.innerHTML = html.join('');
+
+  // Rebind click handlers
+  container.querySelectorAll('.nav-item[data-section]').forEach(item => {
+    item.addEventListener('click', () => showSection(item.dataset.section));
+  });
+
+  // Highlight current active section
+  const currentActive = document.querySelector('.page-section.active')?.id || 'home';
+  container.querySelectorAll('.nav-item').forEach(n =>
+    n.classList.toggle('active', n.dataset.section === currentActive)
+  );
+}
+
+function escapeHtml(str) {
+  if (str === null || str === undefined) return '';
+  return String(str)
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
 }
 
 /* =====================================================================
@@ -608,9 +642,6 @@ function showSection(name) {
   if (name === 'admin-dashboard' && isAdmin) loadAdminData();
   if (name === 'notice-board') loadNotices();
 }
-document.querySelectorAll('.nav-item[data-section]').forEach(item => {
-  item.addEventListener('click', () => showSection(item.dataset.section));
-});
 
 /* =====================================================================
    AUTH TABS
@@ -629,27 +660,18 @@ $('tabRegisterBtn').addEventListener('click', () => {
 });
 
 /* =====================================================================
-   LOGIN — accepts phone OR email
+   LOGIN / REGISTER
    ===================================================================== */
 $('loginForm').addEventListener('submit', async (e) => {
   e.preventDefault();
   const raw = $('loginIdentifier').value.trim();
   const password = $('loginPassword').value;
-
   if (!raw || !password) return alertBox('Enter phone/email and password.', 'error');
-
-  // Convert phone → synthetic email
   const authEmail = looksLikePhone(raw) ? phoneToEmail(raw) : raw;
-
   const { error } = await sb.auth.signInWithPassword({ email: authEmail, password });
   if (error) {
-    // If we tried a phone, hint that they may have registered with an email
     if (looksLikePhone(raw)) {
-      return alertBox(
-        'Login failed. No account found for ' + raw +
-        '. If you registered earlier with an email address, use that email here instead.',
-        'error'
-      );
+      return alertBox(`Login failed. No account found for ${raw}. If you registered earlier with an email, use that email here.`, 'error');
     }
     return alertBox('Login failed: ' + error.message, 'error');
   }
@@ -658,25 +680,18 @@ $('loginForm').addEventListener('submit', async (e) => {
   showSection('home');
 });
 
-/* =====================================================================
-   REGISTER — phone is required, email is optional
-   ===================================================================== */
 $('registerForm').addEventListener('submit', async (e) => {
   e.preventDefault();
   const name = $('regName').value.trim();
   const phone = cleanPhone($('regPhone').value);
   const email = $('regEmail').value.trim();
   const password = $('regPassword').value;
-
   if (!name) return alertBox('Enter your full name.', 'error');
   if (!phone || phone.length < 7) return alertBox('Enter a valid phone number.', 'error');
   if (!password || password.length < 6) return alertBox('Password must be 6+ characters.', 'error');
-
   const authEmail = phoneToEmail(phone);
-
   const { data, error } = await sb.auth.signUp({ email: authEmail, password });
   if (error) return alertBox('Registration failed: ' + error.message, 'error');
-
   if (data.user) {
     await sb.from('profiles').upsert({
       id: data.user.id,
@@ -696,35 +711,33 @@ async function logout() {
   await sb.auth.signOut();
   currentUser = null;
   isAdmin = false;
-  refreshAuthUI();
+  await refreshAuthUI();
   showSection('home');
 }
 
 /* =====================================================================
-   AUTH UI REFRESH
+   AUTH UI REFRESH — visibility via data-requires
    ===================================================================== */
 async function refreshAuthUI() {
-  const loggedIn = !!currentUser;
-  $('mainNavGroup').classList.toggle('hidden', !loggedIn);
-  $('myRequestsNavItem').classList.toggle('hidden', !loggedIn);
-  $('accountNavItem').classList.toggle('hidden', !loggedIn);
-  $('adminNavGroup').classList.toggle('hidden', !isAdmin);
-  $('adminHomeMenuBox').classList.toggle('hidden', !isAdmin);
-  $('loggedInHomeMenu').classList.toggle('hidden', !loggedIn);
-  $('publicHomeContent').classList.toggle('hidden', loggedIn);
-  $('userArea').classList.toggle('hidden', !loggedIn);
-  $('notifWrapper').classList.toggle('hidden', !loggedIn);
-  $('loginNavItem').classList.toggle('hidden', loggedIn);
-  $('homeBannersBlock').classList.toggle('hidden', !loggedIn);
+  const state = isAdmin ? 'admin' : (currentUser ? 'user' : 'guest');
 
-  if (loggedIn) {
+  // Show/hide all elements with data-requires
+  document.querySelectorAll('[data-requires]').forEach(el => {
+    const req = el.dataset.requires;
+    let show = false;
+    if (req === 'all') show = true;
+    else if (req === state) show = true;
+    else if (state === 'admin' && req === 'user') show = true;
+    el.classList.toggle('hidden', !show);
+  });
+
+  if (currentUser) {
     const loginName = displayLogin(currentUser);
     $('sidebarUserStatus').textContent = loginName || 'Logged in';
     $('headerUserName').textContent = loginName || 'User';
     $('headerAvatar').textContent = (loginName || '?')[0].toUpperCase();
 
-    const { data: p } = await sb.from('profiles')
-      .select('name,fb_id').eq('id', currentUser.id).maybeSingle();
+    const { data: p } = await sb.from('profiles').select('name,fb_id').eq('id', currentUser.id).maybeSingle();
     if (p) {
       if (p.name) {
         $('headerUserName').textContent = p.name;
@@ -742,6 +755,9 @@ async function refreshAuthUI() {
   } else {
     $('sidebarUserStatus').textContent = 'Not logged in';
   }
+
+  // Re-render sidebar for the new role
+  renderSidebar();
 }
 
 async function checkAdmin() {
@@ -762,18 +778,26 @@ sb.auth.onAuthStateChange(async (event, session) => {
   }
 });
 
+/* =====================================================================
+   BOOT
+   ===================================================================== */
 (async () => {
+  // 1) Load sidebar from DB (or fallback)
+  await loadSidebar();
+  // 2) Check session
   const { data } = await sb.auth.getSession();
   currentUser = data.session?.user || null;
   if (currentUser) await checkAdmin();
   await refreshAuthUI();
+  // 3) Load user data
   if (currentUser) {
     await Promise.all([loadProfile(), loadMyRequests(), loadNotifications()]);
   }
+  console.log(`[sidebar] Source: ${sidebarSource}, items: ${sidebarItems.length}`);
 })();
 
 /* =====================================================================
-   PROFILE
+   PROFILE / MY REQUESTS / ADMIN / NOTIFICATIONS (unchanged from previous)
    ===================================================================== */
 function extractFbId(raw) {
   if (!raw) return null;
@@ -784,7 +808,6 @@ function extractFbId(raw) {
   const parts = t.split('/').filter(Boolean);
   return parts[parts.length - 1] || null;
 }
-
 function updateAvatarAndBanner(fbRaw) {
   const fbId = extractFbId(fbRaw);
   const avatar = $('profileAvatarImg');
@@ -794,16 +817,12 @@ function updateAvatarAndBanner(fbRaw) {
     avatar.src = `https://graph.facebook.com/${fbId}/picture?type=large&width=200&height=200`;
     bannerImg.src = `https://graph.facebook.com/${fbId}/picture?type=large&width=1200&height=400`;
     banner.classList.remove('hidden');
-  } else {
-    banner.classList.add('hidden');
-  }
+  } else banner.classList.add('hidden');
 }
-
 async function loadProfile() {
   if (!currentUser) return;
   const { data: p } = await sb.from('profiles').select('*').eq('id', currentUser.id).maybeSingle();
   if (!p) return;
-
   const loginName = displayLogin(currentUser);
   $('profileHeaderName').textContent  = p.name || loginName;
   $('profileHeaderEmail').textContent = p.phone || loginName;
@@ -814,12 +833,10 @@ async function loadProfile() {
   $('profHobbies').value       = p.hobbies || '';
   $('profDonationCount').value = p.blood_donation_count ?? 0;
   $('profFbId').value          = p.fb_id || '';
-
   updateAvatarAndBanner(p.fb_id);
   loadDonationJournal();
   loadApprovedAssets();
 }
-
 $('saveProfileBtn').addEventListener('click', async () => {
   if (!currentUser) return;
   const updates = {
@@ -837,42 +854,23 @@ $('saveProfileBtn').addEventListener('click', async () => {
   loadProfile();
   refreshAuthUI();
 });
-
 async function loadDonationJournal() {
   if (!currentUser) return;
-  const { data } = await sb.from('donation_journal')
-    .select('*').eq('user_id', currentUser.id)
-    .order('donation_date', { ascending: false });
+  const { data } = await sb.from('donation_journal').select('*').eq('user_id', currentUser.id).order('donation_date', { ascending: false });
   const body = $('donationJournalBody');
-  if (!data || !data.length) {
-    body.innerHTML = '<tr><td colspan="4" style="color:var(--text-muted)">No entries yet.</td></tr>';
-    return;
-  }
+  if (!data || !data.length) { body.innerHTML = '<tr><td colspan="4" style="color:var(--text-muted)">No entries yet.</td></tr>'; return; }
   body.innerHTML = data.map(r => `
-    <tr>
-      <td>${r.donation_date || ''}</td>
-      <td>${r.hospital_name || ''}</td>
-      <td>${r.donation_serial ?? ''}</td>
-      <td>${r.next_donation_date || ''}</td>
-    </tr>`).join('');
+    <tr><td>${r.donation_date || ''}</td><td>${r.hospital_name || ''}</td>
+    <td>${r.donation_serial ?? ''}</td><td>${r.next_donation_date || ''}</td></tr>`).join('');
 }
-
 async function loadApprovedAssets() {
   if (!currentUser) return;
-  const { data } = await sb.from('id_certificate_requests')
-    .select('*').eq('user_id', currentUser.id).eq('status', 'approved');
-  const box = $('approvedAssetsBox');
-  const list = $('approvedAssetsList');
+  const { data } = await sb.from('id_certificate_requests').select('*').eq('user_id', currentUser.id).eq('status', 'approved');
+  const box = $('approvedAssetsBox'), list = $('approvedAssetsList');
   if (!data || !data.length) { box.classList.add('hidden'); return; }
   box.classList.remove('hidden');
-  list.innerHTML = data.map(r =>
-    `<li>${r.request_type === 'digital_id' ? 'FBDA Digital ID Card' : 'Certificate'} — approved ${new Date(r.reviewed_at).toLocaleDateString()}</li>`
-  ).join('');
+  list.innerHTML = data.map(r => `<li>${r.request_type === 'digital_id' ? 'FBDA Digital ID Card' : 'Certificate'} — approved ${new Date(r.reviewed_at).toLocaleDateString()}</li>`).join('');
 }
-
-/* =====================================================================
-   MY REQUESTS
-   ===================================================================== */
 async function loadMyRequests() {
   if (!currentUser) return;
   const [blood, certs] = await Promise.all([
@@ -880,23 +878,10 @@ async function loadMyRequests() {
     sb.from('id_certificate_requests').select('*').eq('user_id', currentUser.id).order('requested_at', { ascending: false })
   ]);
   const items = [];
-  (blood.data || []).forEach(r => items.push({
-    when: r.created_at,
-    title: `🩸 Blood request — ${r.patient_name || ''} (${r.blood_group || ''})`,
-    detail: r.hospital || '',
-    status: r.status || 'pending'
-  }));
-  (certs.data || []).forEach(r => items.push({
-    when: r.requested_at,
-    title: `📄 ${r.request_type === 'digital_id' ? 'Digital ID' : 'Certificate'} request`,
-    detail: '',
-    status: r.status
-  }));
+  (blood.data || []).forEach(r => items.push({ when: r.created_at, title: `🩸 Blood request — ${r.patient_name || ''} (${r.blood_group || ''})`, detail: r.hospital || '', status: r.status || 'pending' }));
+  (certs.data || []).forEach(r => items.push({ when: r.requested_at, title: `📄 ${r.request_type === 'digital_id' ? 'Digital ID' : 'Certificate'} request`, detail: '', status: r.status }));
   const list = $('myRequestsList');
-  if (!items.length) {
-    list.innerHTML = '<p style="color:var(--text-muted)">No requests yet.</p>';
-    return;
-  }
+  if (!items.length) { list.innerHTML = '<p style="color:var(--text-muted)">No requests yet.</p>'; return; }
   items.sort((a, b) => new Date(b.when) - new Date(a.when));
   list.innerHTML = items.map(i => `
     <div style="border:1px solid var(--border);border-radius:12px;padding:14px;background:#fff">
@@ -908,7 +893,6 @@ async function loadMyRequests() {
       </div>
     </div>`).join('');
 }
-
 $('newBloodRequestForm').addEventListener('submit', async (e) => {
   e.preventDefault();
   if (!currentUser) return alertBox('Please log in first.', 'error');
@@ -926,17 +910,9 @@ $('newBloodRequestForm').addEventListener('submit', async (e) => {
   $('newBloodRequestForm').reset();
   loadMyRequests();
 });
-
-/* =====================================================================
-   APPLY FOR DIGITAL ID / CERT
-   ===================================================================== */
 async function submitApply(type) {
   if (!currentUser) return alertBox('Please log in first.', 'error');
-  const { error } = await sb.from('id_certificate_requests').insert({
-    user_id: currentUser.id,
-    request_type: type,
-    status: 'pending'
-  });
+  const { error } = await sb.from('id_certificate_requests').insert({ user_id: currentUser.id, request_type: type, status: 'pending' });
   if (error) return alertBox(error.message, 'error');
   alertBox('Request submitted! Admin will review it.');
   loadMyRequests();
@@ -945,9 +921,6 @@ async function submitApply(type) {
 $('applyDigitalIdBtn').addEventListener('click', () => submitApply('digital_id'));
 $('applyCertificateBtn').addEventListener('click', () => submitApply('certificate'));
 
-/* =====================================================================
-   SEARCH DONOR
-   ===================================================================== */
 $('searchDonorBtn').addEventListener('click', async () => {
   const q = $('searchDonorInput').value.trim();
   let query = sb.from('profiles').select('id,name,phone,blood_group,address,blood_donation_count');
@@ -955,20 +928,14 @@ $('searchDonorBtn').addEventListener('click', async () => {
   const { data, error } = await query.limit(30);
   if (error) return alertBox(error.message, 'error');
   const box = $('donorResults');
-  if (!data || !data.length) {
-    box.innerHTML = '<p style="color:var(--text-muted)">No donors found.</p>';
-    return;
-  }
+  if (!data || !data.length) { box.innerHTML = '<p style="color:var(--text-muted)">No donors found.</p>'; return; }
   box.innerHTML = data.map(d => `
     <div style="border:1px solid var(--border);border-radius:12px;padding:12px;display:flex;justify-content:space-between;align-items:center;background:#fff">
-      <div>
-        <p style="font-weight:700">${d.name || 'Unnamed'}</p>
-        <p style="font-size:.8rem;color:var(--text-muted)">${d.blood_group || ''} · ${d.phone || ''} · ${d.address || ''} · ${d.blood_donation_count || 0} donations</p>
-      </div>
+      <div><p style="font-weight:700">${d.name || 'Unnamed'}</p>
+      <p style="font-size:.8rem;color:var(--text-muted)">${d.blood_group || ''} · ${d.phone || ''} · ${d.address || ''} · ${d.blood_donation_count || 0} donations</p></div>
       <button class="btn-sm" onclick="viewDonorProfile('${d.id}')">Profile</button>
     </div>`).join('');
 });
-
 window.viewDonorProfile = async (userId) => {
   if (userId === currentUser?.id) return showSection('account-settings');
   const { data } = await sb.from('profiles').select('*').eq('id', userId).maybeSingle();
@@ -976,44 +943,23 @@ window.viewDonorProfile = async (userId) => {
   alert(`Name: ${data.name || '-'}\nPhone: ${data.phone || '-'}\nBlood: ${data.blood_group || '-'}\nAddress: ${data.address || '-'}\nDonations: ${data.blood_donation_count || 0}`);
 };
 
-/* =====================================================================
-   NOTIFICATIONS
-   ===================================================================== */
 async function loadNotifications() {
   if (!currentUser) return;
-  const { data } = await sb.from('notifications')
-    .select('*').eq('user_id', currentUser.id)
-    .order('created_at', { ascending: false }).limit(20);
-  const list = $('notifList');
-  const badge = $('notifBadge');
-  if (!data || !data.length) {
-    list.innerHTML = '<li class="notif-empty">No notifications</li>';
-    badge.style.display = 'none';
-    return;
-  }
+  const { data } = await sb.from('notifications').select('*').eq('user_id', currentUser.id).order('created_at', { ascending: false }).limit(20);
+  const list = $('notifList'), badge = $('notifBadge');
+  if (!data || !data.length) { list.innerHTML = '<li class="notif-empty">No notifications</li>'; badge.style.display = 'none'; return; }
   const unread = data.filter(n => !n.read).length;
-  badge.textContent = unread;
-  badge.style.display = unread ? 'flex' : 'none';
+  badge.textContent = unread; badge.style.display = unread ? 'flex' : 'none';
   list.innerHTML = data.map(n => `
-    <li class="notif-item">
-      <span>🔔</span>
-      <div style="flex:1">
-        <p>${n.message}</p>
-        <p style="font-size:.7rem;color:var(--text-muted);margin-top:4px">${new Date(n.created_at).toLocaleString()}</p>
-      </div>
-    </li>`).join('');
+    <li class="notif-item"><span>🔔</span><div style="flex:1">
+      <p>${n.message}</p><p style="font-size:.7rem;color:var(--text-muted);margin-top:4px">${new Date(n.created_at).toLocaleString()}</p>
+    </div></li>`).join('');
 }
 
-/* =====================================================================
-   NOTICE BOARD
-   ===================================================================== */
 async function loadNotices() {
   const { data } = await sb.from('notices').select('*').order('created_at', { ascending: false }).limit(20);
   const box = $('noticeBoardList');
-  if (!data || !data.length) {
-    box.innerHTML = '<p style="color:var(--text-muted)">No notices yet.</p>';
-    return;
-  }
+  if (!data || !data.length) { box.innerHTML = '<p style="color:var(--text-muted)">No notices yet.</p>'; return; }
   box.innerHTML = data.map(n => `
     <div class="stat-card" style="margin-bottom:12px">
       <h4 style="font-weight:800">${n.title}</h4>
@@ -1022,9 +968,6 @@ async function loadNotices() {
     </div>`).join('');
 }
 
-/* =====================================================================
-   ADMIN
-   ===================================================================== */
 document.querySelectorAll('.admin-tab').forEach(tab => {
   tab.addEventListener('click', () => {
     document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
@@ -1033,16 +976,9 @@ document.querySelectorAll('.admin-tab').forEach(tab => {
     $('adminTab-' + tab.dataset.admin).classList.add('active');
   });
 });
-
-async function loadAdminData() {
-  loadAdminIdCertRequests();
-  loadAdminBlood();
-}
-
+async function loadAdminData() { loadAdminIdCertRequests(); loadAdminBlood(); }
 async function loadAdminIdCertRequests() {
-  const { data, error } = await sb.from('id_certificate_requests')
-    .select('*, profiles(name,email,phone)')
-    .order('requested_at', { ascending: false });
+  const { data, error } = await sb.from('id_certificate_requests').select('*, profiles(name,email,phone)').order('requested_at', { ascending: false });
   const body = $('adminIdCertBody');
   if (error) { body.innerHTML = `<tr><td colspan="5" style="color:#991b1b">${error.message}</td></tr>`; return; }
   if (!data || !data.length) { body.innerHTML = '<tr><td colspan="5" style="color:var(--text-muted)">No requests.</td></tr>'; return; }
@@ -1052,51 +988,29 @@ async function loadAdminIdCertRequests() {
       <td>${r.profiles?.name || r.profiles?.phone || r.profiles?.email || r.user_id.slice(0,8)}</td>
       <td>${r.request_type === 'digital_id' ? 'Digital ID' : 'Certificate'}</td>
       <td><span class="badge ${r.status === 'approved' ? 'bg-success' : r.status === 'rejected' ? 'bg-danger' : 'bg-warning'}">${r.status}</span></td>
-      <td>
-        ${r.status === 'pending' ? `
-          <button class="btn-sm success" onclick="approveIdCert(${r.id})">Approve</button>
-          <button class="btn-sm danger" onclick="rejectIdCert(${r.id})">Reject</button>
-        ` : '—'}
-      </td>
+      <td>${r.status === 'pending' ? `
+        <button class="btn-sm success" onclick="approveIdCert(${r.id})">Approve</button>
+        <button class="btn-sm danger" onclick="rejectIdCert(${r.id})">Reject</button>` : '—'}</td>
     </tr>`).join('');
 }
-
 window.approveIdCert = async (id) => {
   const { data: row } = await sb.from('id_certificate_requests').select('user_id,request_type').eq('id', id).single();
-  const { error } = await sb.from('id_certificate_requests').update({
-    status: 'approved', reviewed_at: new Date().toISOString(), reviewed_by: currentUser.id
-  }).eq('id', id);
+  const { error } = await sb.from('id_certificate_requests').update({ status: 'approved', reviewed_at: new Date().toISOString(), reviewed_by: currentUser.id }).eq('id', id);
   if (error) return alertBox(error.message, 'error');
-  if (row) {
-    await sb.from('notifications').insert({
-      user_id: row.user_id,
-      message: `Your ${row.request_type === 'digital_id' ? 'Digital ID' : 'Certificate'} request has been approved.`
-    });
-  }
+  if (row) await sb.from('notifications').insert({ user_id: row.user_id, message: `Your ${row.request_type === 'digital_id' ? 'Digital ID' : 'Certificate'} request has been approved.` });
   alertBox('Approved.');
   loadAdminIdCertRequests();
 };
-
 window.rejectIdCert = async (id) => {
   const { data: row } = await sb.from('id_certificate_requests').select('user_id,request_type').eq('id', id).single();
-  const { error } = await sb.from('id_certificate_requests').update({
-    status: 'rejected', reviewed_at: new Date().toISOString(), reviewed_by: currentUser.id
-  }).eq('id', id);
+  const { error } = await sb.from('id_certificate_requests').update({ status: 'rejected', reviewed_at: new Date().toISOString(), reviewed_by: currentUser.id }).eq('id', id);
   if (error) return alertBox(error.message, 'error');
-  if (row) {
-    await sb.from('notifications').insert({
-      user_id: row.user_id,
-      message: `Your ${row.request_type === 'digital_id' ? 'Digital ID' : 'Certificate'} request was rejected.`
-    });
-  }
+  if (row) await sb.from('notifications').insert({ user_id: row.user_id, message: `Your ${row.request_type === 'digital_id' ? 'Digital ID' : 'Certificate'} request was rejected.` });
   alertBox('Rejected.');
   loadAdminIdCertRequests();
 };
-
 async function loadAdminBlood() {
-  const { data } = await sb.from('requests')
-    .select('*, profiles(name,email,phone)')
-    .order('created_at', { ascending: false });
+  const { data } = await sb.from('requests').select('*, profiles(name,email,phone)').order('created_at', { ascending: false });
   const box = $('adminBloodList');
   if (!data || !data.length) { box.innerHTML = '<p style="color:var(--text-muted)">No blood requests.</p>'; return; }
   box.innerHTML = data.map(r => `
@@ -1106,7 +1020,6 @@ async function loadAdminBlood() {
       <span class="badge ${r.status === 'approved' ? 'bg-success' : r.status === 'rejected' ? 'bg-danger' : 'bg-warning'}">${r.status || 'pending'}</span>
     </div>`).join('');
 }
-
 $('adminResetBtn').addEventListener('click', async () => {
   const userId = $('adminUserIdInput').value.trim();
   const newPassword = $('adminNewPassword').value;
